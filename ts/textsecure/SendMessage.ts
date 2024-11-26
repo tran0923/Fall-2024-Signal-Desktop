@@ -1967,6 +1967,7 @@ export default class MessageSender {
       options?: Readonly<SendOptionsType>;
     }>
   ): Promise<CallbackResultType> {
+    
     return this.sendReceiptMessage({
       ...options,
       type: Proto.ReceiptMessage.Type.DELIVERY,
