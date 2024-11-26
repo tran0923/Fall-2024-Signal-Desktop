@@ -1967,7 +1967,14 @@ export default class MessageSender {
       options?: Readonly<SendOptionsType>;
     }>
   ): Promise<CallbackResultType> {
-    
+    // Artificial delay added to negate the effectiveness of timing sidechannels for determining user location
+    // See paper Hope of Delivery: Extracting User Locations From Mobile Instant Messengers
+    function delay(ms: number) {
+      return new Promise ( resolve => setTimeout(resolve, ms));
+    }
+
+    await delay(4000 * Math.random());
+
     return this.sendReceiptMessage({
       ...options,
       type: Proto.ReceiptMessage.Type.DELIVERY,
